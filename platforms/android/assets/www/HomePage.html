@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="css/themes/jquery.mobile-1.4.0.min.css">
+<link rel="stylesheet" href="css/themes/rechargio_v2.css">
+<link rel="stylesheet" href="fontAwesome/css/font-awesome.css">
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/home.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+		$(document).on("pageinit", "#homePage", onPageShow);
+
+        function onPageShow(){
+        	$( document ).on( "swipeleft swiperight", "#homePage", function( e ) {
+                // We check if there is no open panel on the page because otherwise
+                // a swipe to close the left panel would also open the right panel (and v.v.).
+                // We do this by checking the data that the framework stores on the page element (panel: open).
+                if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
+                    if ( e.type === "swiperight" ) {
+                        $( "#left-panel" ).panel( "open" );
+                    }
+                }
+            });
+        	
+        	home.setUser();
+        	$.event.special.swipe.scrollSupressionThreshold = 10; // More than this horizontal displacement, and we will suppress scrolling.
+        	$.event.special.swipe.horizontalDistanceThreshold = 30; // Swipe horizontal displacement must be more than this.
+        	$.event.special.swipe.durationThreshold = 500;  // More time than this, and it isn't a swipe.
+        	$.event.special.swipe.verticalDistanceThreshold = 75; // Swipe vertical displacement must be less than this.
+        }
+     
+            
+    </script>
+    
+   
+<div data-role="page" id="homePage">
+  
+  <div data-role="main" class="ui-content"> 
+  
+  		<div class="ui-content banner" style="color:#fff;">
+				<div style="padding:2%;background-color: rgba(244,56,56,.25);width:100%;">
+				<table style="width:96%;">
+					<tbody>
+						<tr>
+						<td align="left" width="60px;">
+							<li class="fa fa-bars fa-2x" onclick="$( '#left-panel' ).panel( 'open' );"  ></li>
+						</td>
+							
+							<td align="center"><img id="profilePic" alt="" style="border:  5px #fff !important;border-radius:6px;"
+								src="img/logoWhite.png" width="20%">
+								<div><span id="firstName"></span> , You are awesome!!</div>
+
+							</td>
+							<td></td>
+							<td align="right">
+							<li class="fa fa-home fa-2x" onclick="gotoHome();"></li>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			</div>
+			
+			<br/>
+			<div style="padding:2%;width:95%;"> 
+			
+			 <table>
+			 	<tr>
+			 		<td width="50%">
+			 			<div class="ui-content app-cards" style="width: 92% !important;" >
+			 				<div id="countUsers" class="bold-red">20.6K</div>
+			 				<div id="locationString1">people donated blood from Hyderabad.</div>
+			 				<div id="GlobalString2">102K users in global.</div>
+			 			</div>
+			 		</td>
+			 		<td>
+			 			<div class="ui-content app-cards" style="width: 90% !important;">
+			 				<div id="countUnits" class="bold-red">60.6K</div>
+			 				<div id="locationString2">units donated from Hyderabad.</div>
+			 				<div id="GlobalString2">102.5K units in global.</div>
+			 			</div>
+			 		</td>
+			 		
+			 	</tr>
+			 </table>
+			
+			</div>
+			
+			<div class="parent">
+			<div class="ui-content app-cards">
+			
+				<table>
+				<tr>
+					<td valign="top" width="25%">
+						<img src="img/user.png" style="display: inline-block;width:90%;">
+					</td>
+					<td>
+						<span style="font-size: 2.5em;">"</span>
+						<span>I need 5 units of B -ve blood on 12 June 2015 at Appolo Hospital, Banjara Hills, Hyderabad. </span>
+						<span>"</span>
+						<div style="font-size: 1.2em;">- Arnab Shehgal</div>
+					</td>
+				</tr>
+				</table>
+			
+			</div>
+			</div>
+			
+			<div>
+				<table style="padding:2%;width:96%;">
+				<tr>
+					<td valign="top">
+				<button class="fa fa-paper-plane fa-lg" onclick="window.location = 'requestBlood.html';" style="width:150px;font-size:14px;">&nbsp;&nbsp;Post Request</button>
+				</td>
+				<td>
+				<button class="fa fa-list fa-lg" onclick="window.location = 'viewRequest.html';" style="width:150px;font-size:14px;">&nbsp;&nbsp;View Request</button>
+				</td>
+				</tr>
+				</table>
+			</div>
+  		
+  		
+  
+  		<div data-role="panel" id="left-panel" data-display="overlay" style="background-color: rgba(256,256,256,.95); ">
+       
+       	<table id="menu_table" class="menu_table" style="color:rgb(30,185,154);width:100%;">
+       	<tbody>
+	       	<tr><td ><a class="fa fa-home fa-lg" onclick="window.location = 'HomePage.html';" >&nbsp;&nbsp;Home</a></td></tr>
+	       	<tr onclick="window.location = 'requestBlood.html';"><td><a class="fa fa-paper-plane fa-lg">&nbsp;&nbsp;Create Request</a></td></tr>
+	       	<tr><td><a class="fa fa-list fa-lg" onclick="window.location = 'viewRequest.html';">&nbsp;&nbsp;View Request</a></td></tr>
+	       	<tr><td><a class="fa fa-user fa-lg">&nbsp;&nbsp;Profile</a></td></tr>
+	       	<tr><td><a class="fa fa-credit-card fa-lg">&nbsp;&nbsp;Donate</a></td></tr>
+	       	<tr><td><a class="fa fa-expand fa-lg">&nbsp;&nbsp;Invite Friends</a></td></tr>
+	       	<tr><td><a class="fa fa-comment-o fa-lg" onclick="window.location = 'getStarted.html';">&nbsp;&nbsp;User Suggestions</a></td></tr>
+	       	<tr><td><a class="fa fa-sign-out fa-lg" onclick="common.logout();">&nbsp;&nbsp;Logout</a></td></tr>
+       	</tbody>
+       	</table>
+       
+       </div>
+	    
+	    
+</div> 
+</body>
+</html>
